@@ -402,6 +402,7 @@ class Partner(osv.osv):
         for partner in self.browse(cr, uid, ids, context=context):
             account_id = partner.property_account_receivable and partner.property_account_receivable.id or False
             fpos_id = partner.property_account_position and partner.property_account_position.id or False
+            paymentterm_id = partner.property_payment_term and partner.property_payment_term.id or False
             addr = self.address_get(cr, uid, [partner.id], ['invoice'])
             if partner.free_member:
                 raise osv.except_osv(_('Error!'),
@@ -425,6 +426,7 @@ class Partner(osv.osv):
             invoice_id = invoice_obj.create(cr, uid, {
                 'partner_id': partner.id,
                 'account_id': account_id,
+                'payment_term' : paymentterm_id,
                 'fiscal_position': fpos_id or False
                 }, context=context)
             line_value['invoice_id'] = invoice_id

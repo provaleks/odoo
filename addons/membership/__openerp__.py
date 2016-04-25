@@ -22,7 +22,7 @@
 
 {
     'name': 'Membership Management',
-    'version': '0.1',
+    'version': '0.2',
     'category': 'Association',
     'description': """
 This module allows you to manage all operations for managing memberships.
@@ -37,8 +37,13 @@ It supports different kind of members:
 
 It is integrated with sales and accounting to allow you to automatically
 invoice and send propositions for membership renewal.
+
+Changelog.
+==========
+    * membership_view.xml: changed context in record-id="action_membership_members". Free member is now NOT default.
+    * membership.py: added paymentterm when creating membership invoices. (create_membership_invoice)
     """,
-    'author': 'OpenERP SA',
+    'author': 'OpenERP SA, Provendo AS',
     'depends': ['base', 'product', 'account'],
     'data': [
         'security/ir.model.access.csv',

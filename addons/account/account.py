@@ -1171,9 +1171,7 @@ class account_move(osv.osv):
             GROUP BY    move_id
             HAVING      abs(sum(debit) - sum(credit)) >= %s
             """ % (10 ** (-max(5, prec))))
-        assert len(cr.fetchall()) == 0, \
-            "For all Journal Items, the state is valid implies that the sum " \
-            "of credits equals the sum of debits"
+        assert len(cr.fetchall()) == 0, "For all Journal Items, the state is valid implies that the sum of credits equals the sum of debits"
         return True
 
     def account_move_prepare(self, cr, uid, journal_id, date=False, ref='', company_id=False, context=None):
